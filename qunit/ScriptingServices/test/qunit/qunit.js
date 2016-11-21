@@ -300,7 +300,7 @@ function runLoggingCallbacks( key, args ) {
 	}
 }
 
-( function() {
+( function() { 
 	if ( !defined.document ) {
 		return;
 	}
@@ -2252,7 +2252,7 @@ if ( typeof define === "function" && define.amd ) {
 }
 
 // Get a reference to the global object, like window in browsers
-}( ( function() {
+}( ( function() { 
 	return this;
 }() ) ) );
 

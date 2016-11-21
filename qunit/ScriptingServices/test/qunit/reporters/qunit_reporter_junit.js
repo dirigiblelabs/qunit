@@ -1,7 +1,7 @@
 /**
- * JUnit reporter for q.QUnit
+ * JUnit reporter for QUnit
  *
- * https://github.com/JamesMGreene/q.QUnit-reporter-junit
+ * https://github.com/JamesMGreene/QUnit-reporter-junit
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
@@ -10,8 +10,8 @@
 
 (function() {
 	'use strict';
-
-	var q = require("bizon/test/qunit");
+	
+	var QUnit = require("core/globals").get("QUnit");
 
 	var currentRun, currentModule, currentTest, assertCount,
 			jUnitReportData, _executeRegisteredCallbacks,
@@ -19,14 +19,14 @@
 
 	// Old API
 	// Gets called when a report is generated.
-	q.QUnit.jUnitReport = function(/* data */) {
+	QUnit.jUnitReport = function(/* data */) {
 		// Override me!
 	};
 
 	// New API
-	q.QUnit.jUnitDone = function(cb) {
+	QUnit.jUnitDone = function(cb) {
 		if (typeof cb === 'function') {
-			// If q.QUnit is already done running, just execute the newly registered callback immediately
+			// If QUnit is already done running, just execute the newly registered callback immediately
 			if (jUnitReportData) {
 				cb(jUnitReportData);
 			}
@@ -48,12 +48,12 @@
 		while (jUnitDoneCallbacks.length > 0);
 
 		// Old API support
-		if (typeof q.QUnit.jUnitReport === 'function') {
-			q.QUnit.jUnitReport(jUnitReportData);
+		if (typeof QUnit.jUnitReport === 'function') {
+			QUnit.jUnitReport(jUnitReportData);
 		}
 	};
 
-	q.QUnit.begin(function() {
+	QUnit.begin(function() {
 		currentRun = {
 			modules: [],
 			total: 0,
@@ -64,7 +64,7 @@
 		};
 	});
 
-	q.QUnit.moduleStart(function(data) {
+	QUnit.moduleStart(function(data) {
 		currentModule = {
 			name: data.name,
 			tests: [],
@@ -80,7 +80,7 @@
 		currentRun.modules.push(currentModule);
 	});
 
-	q.QUnit.testStart(function(data) {
+	QUnit.testStart(function(data) {
 		// Setup default module if no module was specified
 		if (!currentModule) {
 			currentModule = {
@@ -114,7 +114,7 @@
 		currentModule.tests.push(currentTest);
 	});
 
-	q.QUnit.log(function(data) {
+	QUnit.log(function(data) {
 		assertCount++;
 
 		// Ignore passing assertions
@@ -128,7 +128,7 @@
 		}
 	});
 
-	q.QUnit.testDone(function(data) {
+	QUnit.testDone(function(data) {
 		currentTest.time = (new Date()).getTime() - currentTest.start.getTime();  // ms
 		currentTest.total = data.total;
 		currentTest.passed = data.passed;
@@ -137,7 +137,7 @@
 		currentTest = null;
 	});
 
-	q.QUnit.moduleDone(function(data) {
+	QUnit.moduleDone(function(data) {
 		currentModule.time = (new Date()).getTime() - currentModule.start.getTime();  // ms
 		currentModule.total = data.total;
 		currentModule.passed = data.passed;
@@ -146,7 +146,7 @@
 		currentModule = null;
 	});
 
-	q.QUnit.done(function(data) {
+	QUnit.done(function(data) {
 		currentRun.time = data.runtime || ((new Date()).getTime() - currentRun.start.getTime());  // ms
 		currentRun.total = data.total;
 		currentRun.passed = data.passed;
@@ -356,9 +356,5 @@
 
 		_executeRegisteredCallbacks();
 	};
-	
-	if ( typeof exports !== "undefined" && exports ) {
-		exports.QUnit = q.QUnit;
-	}
 
 })();

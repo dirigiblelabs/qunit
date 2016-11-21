@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>QUnit Example</title>
+	<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+	<script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+	<script>
+		QUnit.module('Module 1');
+		QUnit.test( "hello test", function(assert) {
+			assert.ok( 1 == '1', "Passed!" );
+		});
+		QUnit.module('Module 2');
+		QUnit.test( "hello test2", function(assert) {
+			assert.ok( 1 == '1', "Passed!" );
+		});
+	</script>
+</body>
+</html>
