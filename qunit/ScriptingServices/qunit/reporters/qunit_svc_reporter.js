@@ -31,7 +31,7 @@
 		response.setContentType("text/xml; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		require("test/qunit/reporters/qunit_reporter_junit");
+		require("qunit/reporters/qunit_reporter_junit");
 		
 		QUnit.jUnitDone(function(report) {
 			response.print(report.xml);

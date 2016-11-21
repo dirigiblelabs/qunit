@@ -1,6 +1,6 @@
 /* globals $ */
 /* eslint-env node, dirigible */
-var QUnit = require("test/qunit/qunit");
+var QUnit = require("qunit/qunit");
 
 QUnit.config.notrycatch  = false;
 
@@ -45,6 +45,6 @@ QUnit.test('Test with mocks', function(assert){
 });
 
 require("core/globals").set("QUnit", QUnit);
-require("test/qunit/reporters/qunit_console_reporter");
+require("qunit/reporters/qunit_console_reporter");
 
-require("test/qunit/qunit_test_runner_svc").service(QUnit);
+require("qunit/qunit_test_runner_svc").service(QUnit);
