@@ -1,5 +1,5 @@
 # qunit
-QUnit module for testing JavaScript services in Dirigible 
+[QUnit](https://qunitjs.com/) module for unit testing JavaScript services in Dirigible.
 
 Usage
 <pre>
