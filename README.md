@@ -21,7 +21,7 @@ QUnit.test("Test 2", function(assert) {
 require("qunit/qunit_test_runner_svc").service(QUnit);
 </pre>
 
-Provides two result reporters. One to support the test runner service and one that outputs to the console. Both can be used together.
+Provides two result reporters. One to support the test runner service ("qunit/qunit_test_runner_svc" shown above) and one that outputs to the console. Both can be used together.
 To enable the console reporter:
 <pre>
 require("core/globals").set("QUnit", QUnit);
