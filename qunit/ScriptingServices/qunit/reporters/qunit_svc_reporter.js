@@ -5,7 +5,7 @@
 
 	var response = require("net/http/response");
 
-	var QUnit = require("core/globals").get("QUnit");
+	var QUnit = this.QUnit || require("core/globals").get("QUnit");
 	
 	var attachJSONhandler = function(){
 		response.setContentType("application/json; charset=UTF-8");

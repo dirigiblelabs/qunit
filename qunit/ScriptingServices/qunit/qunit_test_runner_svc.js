@@ -5,6 +5,7 @@
 	exports.service = function(QUnit){
 		var _QUnit = QUnit || require('core/globals').get('QUnit');
 		var svc_reporter = require("qunit/reporters/qunit_svc_reporter");
+		svc_reporter.QUnit = QUnit;
 		require("test/test_runner_svc").service({
 			"execute": function(){
 					_QUnit.load();
